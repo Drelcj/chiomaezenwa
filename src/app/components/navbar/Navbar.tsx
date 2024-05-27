@@ -129,6 +129,7 @@ export default function Navbar () {
       <div className="navbar-end">
         {user && <UserButton user={user} />}
         {!user && session.status !== "loading" && <SignInButton />} 
+        {/* create a custom signin page  later */}
         {/* <Link href="/signin" className="btn"> Log In </Link> */}
   
       </div>
