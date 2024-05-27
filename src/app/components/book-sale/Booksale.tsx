@@ -10,7 +10,6 @@ const Booksale = () => {
         <Image
           src="https://files.selar.co/product-images/2023/products/Chiomahope/improving-your-writing-sk-selar.co-651a37393698c.jpeg"
           alt="Improving Your Writing Skill: Tips & Techniques for Media Professionals"
-          layout="responsive"
           width={320}
           height={320}
           className="w-full h-auto shadow-2xl"
