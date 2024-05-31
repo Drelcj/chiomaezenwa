@@ -4,6 +4,7 @@ import "./globals.css";
 import Footer from "./components/footer/Footer";
 import Navbar from "./components/navbar/Navbar";
 import { SessionProvider } from "next-auth/react";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,11 +24,13 @@ export default function RootLayout({
       <body className={`flex flex-col min-h-screen ${inter.className}`}>
        <SessionProvider>
        <Navbar />
+          
         <main className="flex-grow pt-20"> {/* Adjusted the padding (pt-16) as needed to suit the fixed position of the navbar */}
         
           {children}
         </main>
         <Footer />
+          <Toaster />
        </SessionProvider>
       </body>
     </html>
