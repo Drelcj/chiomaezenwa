@@ -26,6 +26,8 @@
     "clsx": "^2.1.1",
     "file-saver": "^2.0.5",
     "framer-motion": "^11.0.8",
+    "html-react-parser": "^5.1.10",
+    "jodit-react": "^4.1.2",
     "lucide-react": "^0.371.0",
     "next": "^14.2.3",
     "next-auth": "^5.0.0-beta.18",
