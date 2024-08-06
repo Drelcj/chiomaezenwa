@@ -1,32 +1,24 @@
 "use client";
-import React from 'react'
-import { useState, useRef } from "react";
+import React, { useState } from 'react';
 import JoditEditor from "jodit-react";
-import HTMLReactParser from "html-react-parser";
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { PrismaClient } from '@prisma/client';
-
-
-const prisma = new PrismaClient
-
 
 export default function CreatePost() {
-    // const editor = useRef(null);
-  const [content, setContent] = useState("");
+  const [content, setContent] = useState<string>("");
 
   const handleSaveAsDraft = async () => {
     try {
-      //Send the content to the backend ( API route )
+      // Send the content to the backend (API route)
       await fetch('/api/create-post', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ content, draftStatus: 'draft'}),
+        body: JSON.stringify({ content, status: 'draft' }),
       });
 
-      //Handle the response ( show a success message )
+      // Handle the response (show a success message)
       console.log('Draft saved successfully.');
     } catch (error) {
       console.error("Error saving draft", error);
@@ -35,16 +27,16 @@ export default function CreatePost() {
 
   const handleSubmit = async () => {
     try {
-      //send the content to your backend ( API route)
+      // Send the content to your backend (API route)
       await fetch('/api/create-post', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application//json',
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ content, postStatus: 'published'}),
+        body: JSON.stringify({ content, status: 'published' }),
       });
 
-      //Handle the error (e.g, show an error message )
+      // Handle the response (show a success message)
       console.log('Post submitted successfully.');
     } catch (error) {
       console.error('Error submitting post:', error);
@@ -52,18 +44,17 @@ export default function CreatePost() {
   };
 
   return (
-    <div> <h1> Create a Post! </h1>
-        <JoditEditor
-        // ref={editor}
+    <div>
+      <h1>Create a Post!</h1>
+      <JoditEditor
         value={content}
         onChange={(newContent) => setContent(newContent)}
       />
-    
       <Button onClick={handleSaveAsDraft}>Save as Draft</Button>
       <Button onClick={handleSubmit}>Submit</Button>
       <button className="btn bg-red-500 text-white">
-        <Link href="">Cancel</Link>
+        <Link href="/">Cancel</Link>
       </button>
     </div>
-  )
+  );
 }

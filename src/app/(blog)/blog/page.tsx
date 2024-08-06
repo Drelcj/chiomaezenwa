@@ -1,13 +1,35 @@
-import Image from 'next/image'
-import React from 'react'
-import Navbar from '../components/Navbar'
+// src/app/blog/page.tsx
+"use client";
+import React, { useEffect, useState } from 'react';
 
-const page = () => {
+const BlogPage: React.FC = () => {
+  const [posts, setPosts] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await fetch('/api/get-posts');
+        const data = await response.json();
+        setPosts(data);
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+      }
+    };
+
+    fetchPosts();
+  }, []);
+
   return (
-    <div className='min-h-screen flex flex-col items-center justify-center'>
-      <Navbar />
+    <div>
+      <h1>Blog</h1>
+      {posts.map((post) => (
+        <div key={post.id}>
+          <h2>{post.title}</h2>
+          <div dangerouslySetInnerHTML={{ __html: post.content }} />
+        </div>
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default BlogPage;
