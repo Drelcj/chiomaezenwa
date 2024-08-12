@@ -6,19 +6,24 @@ const prisma = new PrismaClient();
 
 export async function POST(req: Request) {
   try {
-    const { content, status } = await req.json();
+    const { title, content, status } = await req.json(); // Extracting data from the request body
     
     const savedPost = await prisma.post.create({
       data: {
-        title: "New Post",
+        title,
         content,
-        status,
+        status, // Using the extracted status field
+        published: true,
       },
     });
 
-    return NextResponse.json(savedPost, { status: 200 });
+    return NextResponse.json(savedPost, { status: 201 });
   } catch (error) {
-    console.error('Error saving post:', error);
+    if (error instanceof Error) {
+      console.error('Error saving post:', error.message, error.stack);
+    } else {
+      console.error('Unknown error saving post:', error);
+    }
     return NextResponse.json({ error: 'An error occurred while saving the post.' }, { status: 500 });
   }
 }

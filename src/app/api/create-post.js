@@ -1,5 +1,3 @@
-// pages/api/create-post.js
-
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
@@ -7,13 +5,13 @@ const prisma = new PrismaClient();
 export default async function handler(req, res) {
   if (req.method === 'POST') {
     try {
-      const { content, draftStatus } = req.body; // Assuming your request body contains "content" and "draftStatus"
-      
-      // Save the content to your database using Prisma
+      const { content, draftStatus } = req.body; 
+
+      // Save the content to database using Prisma
       const savedPost = await prisma.post.create({
         data: {
           content,
-          status: draftStatus, // Use "draftStatus" instead of "status"
+          status: draftStatus, 
           // Other fields you want to save (e.g., author, timestamp, etc.)
         },
       });

@@ -57,6 +57,9 @@ model Post {
   id        String   @id @default(cuid())
   title     String
   content   String
+  image     String?
+  author  String?
+  published Boolean  @default(false)
   status    String   // 'published' or 'draft'
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
