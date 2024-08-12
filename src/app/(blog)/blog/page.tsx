@@ -2,6 +2,7 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from "next/image";
 
 interface Post {
   id: string;
@@ -34,8 +35,16 @@ const BlogPage: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {Array.isArray(posts) && posts.map((post) => (
           <div key={post.id} className="card">
-            {/* <img src={post.imageUrl} alt={post.title} className="card-img" /> */}
-            {post.imageUrl && <img src={post.imageUrl} alt={post.title} className="card-img" />}
+              {post.imageUrl && ( 
+              <Image 
+              src={post.imageUrl}
+              alt={post.title}
+              width={300}
+              height={200}
+              className="card-img"
+              />
+              )}
+              
             <h2>{post.title}</h2>
             <p>{post.content.substring(0, 100)}...</p>
             <Link href={`/blog/${post.id}`}>
