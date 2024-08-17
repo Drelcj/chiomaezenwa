@@ -28,7 +28,7 @@ interface PostPageProps {
     }
   }, [id]);
 
-  if (!post) return <div>Loading...</div>;
+  if (!post) return <div>Loading now...</div>;
 
   return (
     <div className='mt-16'>
