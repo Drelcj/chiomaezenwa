@@ -1,5 +1,4 @@
 import Hero from "./components/hero/Hero";
-import Image from "next/image";
 import Register from "./components/register/Register";
 import Courses from "./components/courses/Courses";
 import Clients from "./components/clients/Clients";
